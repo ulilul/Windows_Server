@@ -1,0 +1,48 @@
+# Condition préalable
+2 server windows 
+Avoir déja mit une ip static sur les 2
+Changer les noms de préférence
+
+# Premier Server 
+
+Gérer -> Ajout d'un rôles et des fonctions -> Service AD  ( Je pars d'une principe que vous savez déja faire ça)
+
+# Une fois installé, on va le promouvoir 
+
+Nouvelle forêt - > [nom du domaine que vous voulez] - > MDP de l'AD - > suivant -> jusqu'a l'installation - > redémarrage automatique
+
+# ça va installer un serveur DNS en parralèle, on verra dans un autre tuto comment le répliquer 
+
+Une fois redémarré votre compte est désormais dans l'AD 
+
+Outils - > Utilisateurs et Ordi de l'AD -> crée un user type "admin-serv2" - > propriétés - > Membre De - > administrateur - > appliqué
+
+# Second Server 
+
+ncpa.cpl - > carte réseau -> Ipv4 -> DNS primaire - > adresse de votre premier server
+
+#Allez dans le cmd et tenté de la ping 
+
+ipconfig/all [ pour vérifier que c'est bien le bon dns ]
+
+Server local - > groupe de travail  - > domaine -> [ par le nom du domaine ]
+
+Il y aura une demande d'authentifation mais on la prévu avec la création de notre user auparavant 
+
+Une fois réussie le server va redémarrer et il fera parti désormais du domaien 
+
+# Une fois cela fait , faite la même chose que sur le premier server 
+
+Une fois dans la configuration de l'AD pour verrez que vous pouvez désormais promouvoir ce server en tant que contrôleur du domaine
+
+# D'ou les besoins des droits administrateur pour le user 
+
+Une fois cela fait , on va vous redemander un mdp - > suivant - >  promouvoir tout les domaines ( choissisez le votre ) - > installation
+
+Le server va redémarré 
+
+Vous pouvez désormais apercevoir dans l'outil Utilisateur et ordi de l'ad le même que le premier server, vous voila répliquez 
+
+# Forcer la réplication 
+
+Outil - > Sites et services de l'ad  - > server - > Default first site name -> server > premier server -> NTDS Setting - > "généré automatiquement" -> Clique droit "répliquer maintenant"
