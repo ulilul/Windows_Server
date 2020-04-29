@@ -1,0 +1,14 @@
+#Tuto en combinaison avec l'active directory 
+
+#Tout d'abord, il vous faut avoir réalisé le tuto précédent sur l'AD une fois celui là fait, il ne reste plus grand chose à faire 
+
+Rendez-vous dans Outil - > DNS - > [nom du server@nom du domaine > Zone de recherche directe - > nom du domaine
+Une fois dessus faite un clique droit "Propriétés" -> Réplication -> Vers tous les contrôleurs du domaine
+Faite un test en créant un nom d'hôte (forcé la réplication si nécessaire) 
+
+# Attention si vous souhaitez mettre le premier Server et le 2eme Server en tant que DNS Principal et auxilliaire 
+Oubliez pas de mettre un redirecteur vers un DNS public 8.8.8.8 / 1.1.1.1
+
+DNS - > votre server -> Redirecteurs - > mettre un dns publique - > appliqué 
+
+Faite une recherche google pour essayer 
